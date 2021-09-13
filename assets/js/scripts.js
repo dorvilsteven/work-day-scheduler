@@ -6,7 +6,14 @@ $("#currentDay").text(
 );
 
 
-
 $(".row").on('click', '#task-text', function() {
     console.log('test');
 });
+
+// function runs every hour to see if timeblock is in
+// past, present or future, and updates accordingly
+// setInterval(function() {
+//     $(".time-block").each(function() {
+
+//     });
+// }, (1000 * 60) * 60);
