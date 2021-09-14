@@ -30,7 +30,7 @@ setInterval(function() {
     $('.time-block').each(function(index, el) {
         if (parseInt(moment().format('h')) > 5) {
             // if the work day is over dont run the audit
-            return false;
+            $(el).addClass('past');
         } else {
             // if the work day is active, 
             // run the audit
