@@ -20,7 +20,7 @@ $(".row").on('click', '#task-text', function() {
     console.log('test');
 });
 
-$("#save-task").on('click', 'i', function() {
+$(".row").on('click', 'i', function() {
     console.log('save');
 });
 
