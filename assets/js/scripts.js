@@ -46,6 +46,6 @@ $(".row").on('click', 'i', function() {
 // past, present or future, and updates accordingly
 setInterval(function() {
     $('.time-block').each(function(index, el) {
-        auditTimeBlock(el); 
+            auditTimeBlock(el); 
     });
 }, 1000);
