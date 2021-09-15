@@ -46,17 +46,6 @@ $(".row").on('click', 'i', function() {
 // past, present or future, and updates accordingly
 setInterval(function() {
     $('.time-block').each(function(index, el) {
-<<<<<<< HEAD
-        if (parseInt(moment().format('h')) > 5) {
-            // if the work day is over dont run the audit
-            $(el).addClass('past');
-        } else {
-            // if the work day is active, 
-            // run the audit
-            auditTimeBlock(el); 
-        } 
-=======
         auditTimeBlock(el); 
->>>>>>> feature/time-blocks
     });
 }, 1000);
