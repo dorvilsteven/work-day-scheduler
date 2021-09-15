@@ -1,4 +1,4 @@
-var currentHour = parseInt(moment().format("h"));
+var currentHour = parseInt(moment().format('h'));
 
 var auditTimeBlock = function(timeBlockEl) {
     var timeBlock = $(timeBlockEl);
@@ -6,23 +6,31 @@ var auditTimeBlock = function(timeBlockEl) {
     
     timeBlock.removeClass("past present future");
 
+    if (currentHour <= 6) {
+        currentHour += 12;
+    }
+
     if (timeBlockData === currentHour) {
         timeBlock.addClass("present");
-    } else if (currentHour < 6 ) {
-        if (timeBlockData < currentHour || timeBlockData >= 9) {
+    } else if (currentHour <= 12 && currentHour > 6) {
+        if (timeBlockData < currentHour) {
             timeBlock.addClass("past");
-        } else if (timeBlockData > currentHour) {
+        } else {
             timeBlock.addClass("future");
         }
-    } else if (currentHour >=6) {
-        timeBlock.addClass("past");
+    } else if (currentHour > 12) {
+        if (timeBlockData > currentHour) {
+            timeBlock.addClass("future");    
+        } else {
+            timeBlock.addClass("past");
+        }
     }
 };
 // displays date in the header inside if <p>
 // with an id of currentDay
 $("#currentDay").text(
     // moment.js current date and formatting
-    `${moment().format("dddd, MMM Do YYYY")}`
+    `${moment().format("dddd, MMM Do")}`
 );
 
 
@@ -40,4 +48,4 @@ setInterval(function() {
     $('.time-block').each(function(index, el) {
         auditTimeBlock(el); 
     });
-}, (1000 * 60 ) * 60);
+}, 1000);
