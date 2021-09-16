@@ -35,7 +35,11 @@ $("#currentDay").text(
 
 
 $(".row").on('click', '#task-text', function() {
-    console.log('test');
+    // get text from p element
+    var text = $(this).text().trim();
+    var textInput = $("<textarea>").addClass("col-10").val(text);
+    $(this).replaceWith(textInput);
+    textInput.trigger("focus");
 });
 
 $(".row").on('click', 'i', function() {
