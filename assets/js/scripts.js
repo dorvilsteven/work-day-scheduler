@@ -1,3 +1,4 @@
+var tasks = {};
 var currentHour = parseInt(moment().format('h'));
 
 var auditTimeBlock = function(timeBlockEl) {
@@ -26,12 +27,38 @@ var auditTimeBlock = function(timeBlockEl) {
         }
     }
 };
+
 // displays date in the header inside if <p>
 // with an id of currentDay
 $("#currentDay").text(
     // moment.js current date and formatting
     `${moment().format("dddd, MMM Do")}`
 );
+
+var loadTask = function() {
+    tasks = JSON.parse(localStorage.getItem("daily-tasks"));
+
+    if (!tasks) {
+        tasks = {
+            9: '',
+            10: '',
+            11: '',
+            12: '',
+            13: '',
+            14: '',
+            15: '',
+            16: '',
+            17: '',
+            18: '',
+        };
+    }
+
+    
+};
+
+var saveTasks = function() {
+    localStorage.setItem('daily-tasks', JSON.stringify(tasks));
+}
 
 
 $(".row").on('click', '#task-text', function() {
@@ -46,6 +73,10 @@ $(".row").on('click', 'i', function() {
     var taskContainer = $(this).parent().siblings('div#task-text');
     var taskText = taskContainer.children().val().trim();
     var taskP = $('<p>').addClass("col-12").text(taskText);
+
+    var attr = $(this).parents('div.row').attr('data-time-stamp');
+    
+
 
     taskContainer.children().replaceWith(taskP);
 
