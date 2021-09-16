@@ -36,16 +36,16 @@ $("#currentDay").text(
 
 $(".row").on('click', '#task-text', function() {
     // get text from p element
-    var text = $(this).text().trim();
+    var text = $(this).children().text().trim();
     var textInput = $("<textarea>").addClass("col-12").val(text);
     $(this).children().replaceWith(textInput);
     textInput.trigger("focus");
 });
 
 $(".row").on('click', 'i', function() {
-    var taskContainer = $(this).parents('div#save-task').siblings('div#task-text');
-    var taskText = taskContainer.children().text();
-    var taskP = $('<p>').text(taskText);
+    var taskContainer = $(this).parent().siblings('div#task-text');
+    var taskText = taskContainer.children().val().trim();
+    var taskP = $('<p>').addClass("col-12").text(taskText);
 
     taskContainer.children().replaceWith(taskP);
 
