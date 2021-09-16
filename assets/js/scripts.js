@@ -37,13 +37,18 @@ $("#currentDay").text(
 $(".row").on('click', '#task-text', function() {
     // get text from p element
     var text = $(this).text().trim();
-    var textInput = $("<textarea>").addClass("col-10").val(text);
-    $(this).replaceWith(textInput);
+    var textInput = $("<textarea>").addClass("col-12").val(text);
+    $(this).children().replaceWith(textInput);
     textInput.trigger("focus");
 });
 
 $(".row").on('click', 'i', function() {
-    console.log('save');
+    var taskContainer = $(this).parents('div#save-task').siblings('div#task-text');
+    var taskText = taskContainer.children().text();
+    var taskP = $('<p>').text(taskText);
+
+    taskContainer.children().replaceWith(taskP);
+
 });
 
 // function runs every hour to see if timeblock is in
